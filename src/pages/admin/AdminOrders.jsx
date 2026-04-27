@@ -18,13 +18,9 @@ function AdminOrders() {
         {/* Navbar */}
         <Navbar />
 
-        {/* স্মল ডিভাইসের জন্য pt-24 যোগ করা হয়েছে যাতে ন্যাভবার থেকে অনেক নিচে শুরু হয়।
-           মোবাইলে ন্যাভবার অনেক সময় ফিক্সড থাকে, তাই এই গ্যাপটা জরুরি।
-        */}
         <main className="flex-1 overflow-y-auto px-4 pb-8 pt-24 md:pt-16 md:px-8">
           <div className="max-w-7xl mx-auto">
             
-            {/* Page Header - mt-6 দিয়ে মোবাইলে আরও নিচে নামানো হয়েছে */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 mt-6 gap-4">
               <div>
                 <h2 className="text-3xl font-extrabold text-gray-800 tracking-tight">Order Management</h2>
@@ -84,8 +80,6 @@ function AdminOrders() {
               </table>
             </div>
 
-            {/* ================= MOBILE CARDS ================= */}
-            {/* mt-8 যোগ করা হয়েছে টাইটেল থেকে লিস্টকে আরও নিচে নামানোর জন্য */}
             <div className="md:hidden space-y-6 mt-8">
               {allOrders?.map((order) => (
                 <div key={order._id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden">
