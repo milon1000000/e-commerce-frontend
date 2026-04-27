@@ -30,7 +30,7 @@ function Order({order}) {
               {/* Order Info Section */}
               <div className="p-4 border-b border-gray-100 text-sm grid grid-cols-1 md:grid-cols-2 gap-4">
                 <p><strong>User:</strong> {singleOrder.userId.firstName} {singleOrder.userId.lastName}</p>
-                {/* <p><strong>Email:</strong> {singleOrder.userId.email}</p> */}
+                <p><strong>Email:</strong> {singleOrder.userId.email}</p>
               </div>
 
               {/* Products List */}
