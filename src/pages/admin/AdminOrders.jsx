@@ -33,9 +33,9 @@ function AdminOrders() {
                   <th className="px-4 py-3 text-sm font-semibold text-gray-700">
                     Products
                   </th>
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-700">
+                  {/* <th className="px-4 py-3 text-sm font-semibold text-gray-700">
                     Amount
-                  </th>
+                  </th> */}
                   <th className="px-4 py-3 text-sm font-semibold text-gray-700">
                     Status
                   </th>
