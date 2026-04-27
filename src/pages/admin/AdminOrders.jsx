@@ -8,17 +8,13 @@ function AdminOrders() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar - Fixed width on desktop */}
-      <div className="hidden md:block w-64 flex-shrink-0">
+      <div className="hidden md:block w-64 shrink-0">
         <Sidebar />
       </div>
 
-      {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Navbar */}
         <Navbar />
 
-        {/* Content Scrollable Area */}
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-6">
@@ -28,7 +24,6 @@ function AdminOrders() {
               </span>
             </div>
 
-            {/* ================= DESKTOP TABLE ================= */}
             <div className="hidden md:block bg-white shadow-md rounded-xl overflow-hidden border border-gray-200">
               <table className="w-full text-left">
                 <thead>
@@ -87,7 +82,6 @@ function AdminOrders() {
               </table>
             </div>
 
-            {/* ================= MOBILE CARDS ================= */}
             <div className="md:hidden space-y-4">
               {allOrders?.map((order) => (
                 <div key={order._id} className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
