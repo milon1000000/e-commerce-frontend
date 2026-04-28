@@ -136,7 +136,6 @@ function AdminOrders() {
             </table>
           </div>
 
-          {/* ================= MOBILE CARDS ================= */}
           <div className="md:hidden space-y-6 mt-8">
             {allOrders?.map((order) => (
               <div

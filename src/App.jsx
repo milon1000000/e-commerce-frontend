@@ -59,7 +59,7 @@ function App() {
 
         <Route
           path="/cart"
-          element={userData ? <Cart /> : <Navigate to="/" />}
+          element={ <Cart/>}
         />
         <Route
           path="/address"
