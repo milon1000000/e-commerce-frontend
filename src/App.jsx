@@ -50,7 +50,7 @@ function App() {
 
         <Route
           path="/profile"
-          element={userData ? <Profile /> : <Navigate to="/" />}
+          element={<Profile />}
         />
         <Route
           path="/order"
