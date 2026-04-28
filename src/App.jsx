@@ -69,57 +69,54 @@ function App() {
         <Route path="/fail" element={<PaymentFaild />} />
         <Route
           path="/dashboard"
-          element={admin === "admin" ? <Dashboard /> : <Navigate to="/" />}
+          element={<Dashboard/>}
         ></Route>
         <Route
           path="/dashboard/sales"
-          element={admin === "admin" ? <AdminSales /> : <Navigate to="/" />}
+          element={<AdminSales/>}
         />
         <Route
           path="/dashboard/add-product"
           element={
-            userData?.role === "admin" ? <AddProduct /> : <Navigate to="/" />
+             <AddProduct/>
           }
         />
         <Route
           path="/dashboard/products"
-          element={admin === "admin" ? <AdminProduct /> : <Navigate to="/" />}
+          element={<AdminProduct />}
         />
         <Route
           path="/dashboard/orders"
           element={
-            userData?.role === "admin" ? <AdminOrders /> : <Navigate to="/" />
+            <AdminOrders />
           }
         />
         <Route
           path="/dashboard/user/orders/:id"
-          element={admin === "admin" ? <ShowUserOrders /> : <Navigate to="/" />}
+          element={<ShowUserOrders /> }
         />
         <Route
           path="/dashboard/users"
           element={
-            userData?.role === "admin" ? <AdminUsers /> : <Navigate to="/" />
+             <AdminUsers /> 
           }
         />
         <Route
           path="/dashboard/single-user/:id"
           element={
-            userData?.role === "admin" ? (
               <AdminSingleUser />
-            ) : (
-              <Navigate to="/" />
-            )
+            
           }
         />
         <Route
           path="/dashboard/users/:id"
-          element={admin === "admin" ? <UserInfo /> : <Navigate to="/" />}
+          element={<UserInfo /> }
         />
 
         <Route
           path="/dashboard/update-product/:id"
           element={
-            admin === "admin" ? <AdminUpdateProduct /> : <Navigate to="/" />
+             <AdminUpdateProduct />
           }
         />
 
