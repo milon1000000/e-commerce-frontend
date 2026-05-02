@@ -32,19 +32,19 @@ function DashboardNav() {
   return (
     <header className="bg-pink-50 fixed top-0 w-full z-50 border-b border-pink-200 shadow-sm">
       
-      {/* 🔥 relative add kora hoise */}
-      <div className="relative max-w-7xl mx-auto flex justify-between items-center py-3 px-4 md:px-6">
+      {/* 🔥 relative parent */}
+      <div className="relative max-w-7xl mx-auto flex items-center py-3 px-4 md:px-6">
         
-        {/* ✅ Center logo on mobile */}
+        {/* ✅ Logo center on mobile */}
         <Link
           to="/"
-          className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none"
+          className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
         >
           <img src="/Ekart.png" alt="logo" className="w-20" />
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6 ml-auto">
           <Link to="/" className="font-semibold hover:text-pink-600">
             Home
           </Link>
@@ -95,9 +95,9 @@ function DashboardNav() {
           )}
         </nav>
 
-        {/* ✅ Menu Icon (white bg + shadow) */}
+        {/* ✅ Mobile Menu Icon */}
         <div className="md:hidden ml-auto">
-          <div className="bg-white p-2 rounded-lg shadow-lg cursor-pointer">
+          <div className="bg-white p-2 rounded-lg shadow-lg cursor-pointer text-2xl">
             {menuOpen ? (
               <FaTimes onClick={() => setMenuOpen(false)} />
             ) : (
