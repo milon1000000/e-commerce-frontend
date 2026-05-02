@@ -51,11 +51,11 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='bg-gray-50 min-h-screen pt-50'>
+    <div className='bg-gray-50 min-h-screen pt-20'>
       {/* <Navbar /> */}
       <DashboardNav/>
       <div className='flex'>
-        <Sidebar />
+        <Sidebar className="pt-40"/>
         
         <main className='flex-1 p-4 md:p-8 pt-24 ml-0 md:ml-64 transition-all duration-300'>
           {/* Stats Grid */}
