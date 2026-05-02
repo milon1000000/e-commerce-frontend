@@ -31,7 +31,7 @@ function DashboardNav() {
   return (
     <header className="bg-pink-50 fixed top-0 w-full z-50 border-b border-pink-200 shadow-sm">
       <div className="max-w-7xl mx-auto flex justify-between items-center py-3 px-4 md:px-6">
-        <Link to="/" className="hidden md:block">
+        <Link to="/" className="mr-70px md:mr-0">
           <img src="/Ekart.png" alt="logo" className="w-20 md:w-20" />
         </Link>
 
