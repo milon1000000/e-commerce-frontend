@@ -50,7 +50,7 @@ function DashboardNav() {
           />
 
           {/* RIGHT → Menu Icon (NO BG) */}
-          <div className="text-white text-2xl cursor-pointer mr-1">
+          <div className="text-black text-2xl cursor-pointer mr-1">
             {menuOpen ? (
               <FaTimes onClick={() => setMenuOpen(false)} />
             ) : (
