@@ -32,20 +32,18 @@ function DashboardNav() {
   return (
     <header className="bg-pink-50 fixed top-0 w-full z-50 border-b border-pink-200 shadow-sm">
       
-      <div className="max-w-7xl mx-auto flex justify-between items-center py-3 px-4 md:px-6">
+      <div className="max-w-7xl mx-auto flex items-center py-3 px-4 md:px-6">
 
-        {/* ✅ Desktop Logo */}
         <Link to="/" className="hidden md:block">
           <img src="/Ekart.png" alt="logo" className="w-20" />
         </Link>
 
-        {/* ✅ Mobile Right Side (logo + menu) */}
-        <div className="md:hidden ml-auto flex items-center gap-3">
+        <div className="md:hidden w-full flex justify-between items-center">
           
-          {/* Logo */}
+          {/* LEFT → Logo */}
           <img src="/Ekart.png" alt="logo" className="w-16" />
 
-          {/* Menu Icon */}
+          {/* RIGHT → Menu Icon */}
           <div className="bg-pink-500 p-2 rounded-lg shadow-lg cursor-pointer text-white text-2xl">
             {menuOpen ? (
               <FaTimes onClick={() => setMenuOpen(false)} />
