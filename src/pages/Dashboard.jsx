@@ -54,7 +54,7 @@ const Dashboard = () => {
     <div className='bg-gray-50 min-h-screen pt-20'>
       {/* <Navbar /> */}
       <DashboardNav/>
-      <div className='flex'>
+      <div className='flex pt-20'>
         <Sidebar />
         
         <main className='flex-1 p-4 md:p-8 pt-24 ml-0 md:ml-64 transition-all duration-300'>
