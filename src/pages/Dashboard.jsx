@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-// import Navbar from '../components/ui/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useContext } from 'react';
 import { authDataContext } from '../context/authContext';
