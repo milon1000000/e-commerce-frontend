@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import Navbar from '../components/ui/Navbar';
+// import Navbar from '../components/ui/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useContext } from 'react';
 import { authDataContext } from '../context/authContext';
 import { userDataContext } from '../context/userContext';
+import DashboardNav from '../components/ui/DashboardNav';
 
 const Dashboard = () => {
   const{serverUrl}=useContext(authDataContext);
@@ -51,7 +52,8 @@ const Dashboard = () => {
 
   return (
     <div className='bg-gray-50 min-h-screen pt-20'>
-      <Navbar />
+      {/* <Navbar /> */}
+      <DashboardNav/>
       <div className='flex'>
         <Sidebar />
         
