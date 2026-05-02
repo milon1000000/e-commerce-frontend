@@ -46,7 +46,7 @@ function DashboardNav() {
           <img
             src="/Ekart.png"
             alt="logo"
-            className="w-16 ml-2"
+            className="w-16 ml-20"
           />
 
           {/* RIGHT → Menu Icon (NO BG) */}
