@@ -103,7 +103,7 @@ function DashboardNav() {
             </button>
           ) : (
             <button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-md font-medium"
+              className="bg-linear-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-md font-medium"
               onClick={() => navigate("/login")}
             >
               Login

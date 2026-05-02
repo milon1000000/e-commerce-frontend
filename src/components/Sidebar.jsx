@@ -26,7 +26,7 @@ function Sidebar() {
     <>
       {/* Mobile Hamburger Button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-pink-600 text-white p-2 rounded-lg shadow-lg"
+        className="md:hidden fixed top-4 left-4 z-50 bg-white text-black p-2 rounded-lg shadow-lg"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <RxCross2 size={22} /> : <IoMenu size={22} />}
