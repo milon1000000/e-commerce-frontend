@@ -101,7 +101,7 @@ function Address() {
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="e.g. 123 Main Street"
-                  className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-pink-400 transition-all"
+                  className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -113,7 +113,7 @@ function Address() {
                   value={formData.city}
                   onChange={handleChange}
                   placeholder="Dhaka"
-                  className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-pink-400"
+                  className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -125,14 +125,14 @@ function Address() {
                   value={formData.postCode}
                   onChange={handleChange}
                   placeholder="1212"
-                  className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-pink-400"
+                  className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div className="flex flex-col gap-1.5 md:col-span-2">
                 <label className="text-xs font-bold text-gray-400 uppercase">
                   Phone Number
                 </label>
-                <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-pink-400">
+                <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
                   <span className="text-sm text-gray-500 px-4 bg-gray-50 border-r border-gray-100">
                     +880
                   </span>
@@ -166,24 +166,24 @@ function Address() {
           </div>
 
           {savedAddress && (
-            <div className="bg-white rounded-xl border border-pink-200 p-6 shadow-sm border-l-4 border-l-pink-500">
+            <div className="bg-white rounded-xl border border-blue-200 p-6 shadow-sm border-l-4 border-l-blue-600 bg-blue-50/20">
               <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center text-pink-600 font-bold">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold">
                     ✓
                   </div>
                   <div>
                     <p className="text-sm font-bold text-gray-900">
                       Current Delivery Address
                     </p>
-                    <p className="text-[10px] uppercase font-bold text-pink-500 tracking-wide">
+                    <p className="text-[10px] uppercase font-bold text-blue-600 tracking-wide">
                       Primary Profile Address
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setFormData(savedAddress)}
-                  className="text-xs font-bold text-gray-400 hover:text-pink-600 border border-gray-100 px-3 py-1 rounded-md hover:bg-pink-50 transition-all"
+                  className="text-xs font-bold text-slate-500 hover:text-blue-600 border border-slate-200 px-3 py-1 rounded-md hover:bg-blue-50 transition-all"
                 >
                   Edit
                 </button>
@@ -244,14 +244,14 @@ function Address() {
                   className={`w-full py-4 rounded-xl font-bold uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 ${
                     !savedAddress || payingLoading
                       ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-pink-600 text-white hover:bg-pink-700 shadow-pink-100 active:scale-[0.95]"
+                      : "bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/20 active:scale-[0.98]"
                   }`}
                   onClick={() => payment(userData?._id)}
                 >
                   {payingLoading ? (
                     <AiOutlineLoading3Quarters className="animate-spin" />
                   ) : (
-                    "Pay"
+                    "Proceed to Payment"
                   )}
                 </button>
 

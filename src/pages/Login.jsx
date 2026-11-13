@@ -41,46 +41,54 @@ function Login() {
         setTimeout(() => navigate("/"), 500);
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Something went wrong! Please try again."
-      );
+      console.error("Login error:", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        (error.code === "ERR_NETWORK" || error.message === "Network Error"
+          ? "Cannot connect to server. Please check if backend is running!"
+          : error.message) ||
+        "Something went wrong! Please try again.";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-linear-to-r from-pink-100 to-purple-100 px-4">
-      <div className="w-full max-w-sm bg-white rounded-xl shadow-xl border border-pink-200 p-6">
+    <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50/60 via-slate-50 to-blue-100/40 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200/80 p-8">
         {/* Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-pink-600">Login</h1>
-          <p className="text-gray-600 text-sm">Enter your email and password</p>
+        <div className="text-center mb-7">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-blue-600 font-bold text-2xl mb-3 shadow-xs">
+            E
+          </div>
+          <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">Welcome Back</h1>
+          <p className="text-slate-500 text-sm mt-1">Please enter your credentials to login</p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* Email */}
-          <div className="flex flex-col gap-2">
-            <label className="text-gray-700 font-medium">Email</label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-slate-700 text-sm font-semibold">Email Address</label>
             <input
               name="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="you@example.com"
               value={formData.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               required
             />
           </div>
 
           {/* Password */}
-          <div className="flex flex-col gap-2 relative">
+          <div className="flex flex-col gap-1.5 relative">
             <div className="flex items-center justify-between">
-              <label className="text-gray-700 font-medium">Password</label>
+              <label className="text-slate-700 text-sm font-semibold">Password</label>
               <Link
                 to="/forgot"
-                className="text-pink-500 text-sm font-semibold hover:underline"
+                className="text-blue-600 text-xs font-semibold hover:underline"
               >
                 Forgot password?
               </Link>
@@ -88,17 +96,17 @@ function Login() {
             <input
               name="password"
               type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
+              placeholder="••••••••"
               value={formData.password}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition pr-11"
               required
             />
             <div
-              className="absolute flex items-center justify-center right-3 top-11 cursor-pointer text-gray-500"
+              className="absolute flex items-center justify-center right-3 top-9 cursor-pointer text-slate-400 hover:text-slate-600"
               onClick={() => setShowPassword(!showPassword)}
             >
-             {showPassword ? <FaRegEye className="text-2xl" /> : <FaEyeSlash className="text-2xl" />}
+             {showPassword ? <FaRegEye className="text-xl" /> : <FaEyeSlash className="text-xl" />}
             </div>
           </div>
 
@@ -106,21 +114,21 @@ function Login() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-md font-medium text-white transition flex justify-center items-center gap-2 ${
-              loading ? "bg-pink-400 cursor-not-allowed" : "bg-pink-500 hover:bg-pink-600"
+            className={`w-full py-3 rounded-xl font-semibold text-white transition-all shadow-sm hover:shadow flex justify-center items-center gap-2 mt-2 ${
+              loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 active:scale-[0.99]"
             }`}
           >
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Logging in..." : "Sign In"}
           </button>
         </form>
 
         {/* Footer */}
-        <div className="mt-6 text-center text-gray-600 text-sm">
+        <div className="mt-7 text-center text-slate-600 text-sm border-t border-slate-100 pt-5">
           Don’t have an account?{" "}
           <Link
             to="/signup"
-            className="text-pink-500 font-semibold hover:underline hover:text-pink-600 transition"
+            className="text-blue-600 font-semibold hover:underline hover:text-blue-700 transition"
           >
             Sign Up
           </Link>

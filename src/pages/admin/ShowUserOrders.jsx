@@ -47,7 +47,7 @@ function ShowUserOrders() {
       <div className="max-w-4xl mx-auto px-4">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">
           {order.length > 0
-            ? `${user.firstName} ${user.lastName} Orders`
+            ? `${user?.firstName || "Customer"} ${user?.lastName || ""} Orders`
             : "This user has no orders"}
         </h2>
       </div>

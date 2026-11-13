@@ -62,10 +62,10 @@ function Features() {
 
         {/* 24/7 Support */}
         <div className="flex items-center gap-5 p-6 bg-white rounded-xl shadow hover:shadow-lg transition duration-300">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-purple-50 shrink-0">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-50 shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-8 h-8 text-purple-600"
+              className="w-8 h-8 text-blue-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

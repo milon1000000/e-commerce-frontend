@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/ui/Navbar";
 import Sidebar from "../../components/Sidebar";
+import Pagination from "../../components/ui/Pagination";
 import { userDataContext } from "../../context/userContext";
 import { RiLoader2Fill, RiEditBoxLine, RiDeleteBin6Line, RiSearchLine } from "react-icons/ri";
 import { authDataContext } from "../../context/authContext";
@@ -14,6 +15,8 @@ function AdminProduct() {
   const [searchProduct, setSearchProduct] = useState("");
   const [searchData, setSearchData] = useState([]);
   const [isOpen, setIsOpen] = useState(false); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
   const navigate = useNavigate();
 
   const deleteProduct = async ({ productId }) => {
@@ -31,6 +34,7 @@ function AdminProduct() {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     if (!searchProduct) {
       setSearchData([]);
       return;
@@ -49,10 +53,15 @@ function AdminProduct() {
     fetchSearch();
   }, [searchProduct, serverUrl]);
 
-  const displayProducts = searchProduct ? searchData : productData;
+  const displayProducts = (searchProduct ? searchData : productData) || [];
+  const totalPages = Math.ceil(displayProducts.length / itemsPerPage);
+  const paginatedProducts = displayProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
-    <div className="min-h-screen bg-[#FDF8FA]">
+    <div className="min-h-screen bg-slate-50">
       <Navbar setIsOpen={setIsOpen} />
 
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -69,22 +78,22 @@ function AdminProduct() {
                 placeholder="Search Product..."
                 value={searchProduct}
                 onChange={(e) => setSearchProduct(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-white border border-gray-100 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-100 transition-all text-gray-600"
+                className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl shadow-xs focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-700"
               />
             </div>
           </div>
 
           {/* Product List */}
           <div className="space-y-4">
-            {displayProducts && displayProducts.length > 0 ? (
-              displayProducts.map((product) => (
+            {paginatedProducts && paginatedProducts.length > 0 ? (
+              paginatedProducts.map((product) => (
                 <div
                   key={product._id}
-                  className="bg-white rounded-2xl border border-gray-50 p-3 md:p-4 flex items-center gap-3 md:gap-6 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="bg-white rounded-2xl border border-slate-200/80 p-3 md:p-4 flex items-center gap-3 md:gap-6 shadow-xs hover:shadow-md transition-all duration-300"
                 >
                   {/* Image */}
                   <div
-                    className="w-20 h-20 md:w-28 md:h-28 shrink-0 bg-gray-50 rounded-xl p-2 flex items-center justify-center cursor-pointer"
+                    className="w-20 h-20 md:w-28 md:h-28 shrink-0 bg-slate-50 rounded-xl p-2 flex items-center justify-center cursor-pointer"
                     onClick={() => navigate(`/products/${product._id}`)}
                   >
                     <img
@@ -96,7 +105,7 @@ function AdminProduct() {
 
                   {loadingProductId === product._id ? (
                     <div className="flex-1 py-10 flex justify-center items-center">
-                      <RiLoader2Fill className="animate-spin text-3xl text-pink-500" />
+                      <RiLoader2Fill className="animate-spin text-3xl text-blue-600" />
                     </div>
                   ) : (
                     <>
@@ -114,7 +123,7 @@ function AdminProduct() {
                       <div className="flex flex-col md:flex-row gap-1 md:gap-2 shrink-0">
                         <Link
                           to={`/dashboard/update-product/${product._id}`}
-                          className="p-2 text-green-500 hover:bg-green-50 rounded-lg transition-colors flex items-center justify-center"
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center justify-center"
                         >
                           <RiEditBoxLine size={20} />
                         </Link>
@@ -135,6 +144,23 @@ function AdminProduct() {
               </div>
             )}
           </div>
+
+          {/* Pagination */}
+          {displayProducts.length > itemsPerPage && (
+            <div className="mt-6 bg-white rounded-2xl border border-slate-200/80 p-2 shadow-xs">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={displayProducts.length}
+                itemsPerPage={itemsPerPage}
+                itemName="products"
+                onPageChange={(page) => {
+                  setCurrentPage(page);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              />
+            </div>
+          )}
         </div>
       </main>
     </div>

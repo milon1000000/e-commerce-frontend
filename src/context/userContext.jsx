@@ -8,21 +8,25 @@ function UserContext({ children }) {
   const { serverUrl } = useContext(authDataContext);
 
   const [userData, setUserData] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [productData, setProductData] = useState(null);
   const [addToCartData, setAddToCartData] = useState({ items: [] });
   const [allUsers, setAllUsers] = useState(null);
   const [allOrders, setAllOrders] = useState(null);
 
- 
   const getCurrentUser = async () => {
     try {
+      setAuthLoading(true);
       const result = await axios.get(
         `${serverUrl}/api/v1/user/get-current`,
         { withCredentials: true }
       );
-      setUserData(result.data.user);
+      setUserData(result.data.user || null);
     } catch (error) {
       console.log("USER ERROR:", error);
+      setUserData(null);
+    } finally {
+      setAuthLoading(false);
     }
   };
 
@@ -89,22 +93,29 @@ function UserContext({ children }) {
   useEffect(() => {
     getCurrentUser();
     getAllProduct();
-    getAddToCart();
-    getAllUsers();
   }, []);
 
- 
   useEffect(() => {
     if (userData?._id) {
-      getAllOrders();
+      getAddToCart();
+      if (userData.role === "admin") {
+        getAllUsers();
+        getAllOrders();
+      }
+    } else {
+      setAddToCartData({ items: [] });
+      setAllUsers(null);
+      setAllOrders(null);
     }
-  }, [userData?._id]);
+  }, [userData?._id, userData?.role]);
 
   return (
     <userDataContext.Provider
       value={{
         userData,
         setUserData,
+        authLoading,
+        setAuthLoading,
         productData,
         setProductData,
         addToCartData,
@@ -116,6 +127,8 @@ function UserContext({ children }) {
         getCurrentUser,
         getAllUsers,
         getAllOrders,
+        getAddToCart,
+        getAllProduct,
       }}
     >
       {children}

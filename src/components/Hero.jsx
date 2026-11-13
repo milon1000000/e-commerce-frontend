@@ -2,7 +2,7 @@ import React from "react";
 
 function Hero() {
   return (
-    <section className="bg-linear-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-20">
+    <section className="bg-linear-to-r from-blue-700 via-blue-600 to-sky-700 text-white py-20">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -18,12 +18,12 @@ function Hero() {
               smartphones, laptops and more.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start px-4">
-              <button className="bg-white text-blue-600 px-6 py-3 font-semibold hover:bg-gray-100">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button className="bg-white text-blue-600 px-6 py-3 font-semibold rounded-xl hover:bg-blue-50 shadow-md hover:shadow-lg transition-all">
                 Shop Now
               </button>
 
-              <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3">
+              <button className="bg-transparent border-2 border-white/80 text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold rounded-xl transition-all">
                 View Deals
               </button>
             </div>

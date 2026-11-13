@@ -2,15 +2,25 @@ import React, { useContext, useState } from "react";
 import { userDataContext } from "../../context/userContext";
 import Navbar from "../../components/ui/Navbar";
 import Sidebar from "../../components/Sidebar";
+import Pagination from "../../components/ui/Pagination";
 
 function AdminOrders() {
   const { allOrders } = useContext(userDataContext);
 
   // Sidebar toggle state
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  const ordersList = allOrders || [];
+  const totalPages = Math.ceil(ordersList.length / itemsPerPage);
+  const paginatedOrders = ordersList.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-slate-50">
       {/* Navbar */}
       <Navbar setIsOpen={setIsOpen} />
 
@@ -68,8 +78,8 @@ function AdminOrders() {
               </thead>
 
               <tbody className="divide-y divide-gray-100">
-                {allOrders?.length > 0 ? (
-                  allOrders.map((order) => (
+                {paginatedOrders?.length > 0 ? (
+                  paginatedOrders.map((order) => (
                     <tr
                       key={order._id}
                       className="hover:bg-blue-50/30 transition-all duration-200"
@@ -137,7 +147,7 @@ function AdminOrders() {
           </div>
 
           <div className="md:hidden space-y-6 mt-8">
-            {allOrders?.map((order) => (
+            {paginatedOrders?.map((order) => (
               <div
                 key={order._id}
                 className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden"
@@ -182,6 +192,23 @@ function AdminOrders() {
               </div>
             ))}
           </div>
+
+          {/* Pagination */}
+          {ordersList.length > itemsPerPage && (
+            <div className="mt-6 bg-white rounded-2xl border border-slate-200/80 p-2 shadow-xs">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={ordersList.length}
+                itemsPerPage={itemsPerPage}
+                itemName="orders"
+                onPageChange={(page) => {
+                  setCurrentPage(page);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              />
+            </div>
+          )}
         </div>
       </main>
     </div>

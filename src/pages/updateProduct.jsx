@@ -219,7 +219,7 @@ function UpdateProduct() {
             <button
               type="submit"
               disabled={loading}
-              className="bg-pink-600 text-white px-4 py-2 rounded w-full flex items-center justify-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-semibold w-full flex items-center justify-center transition-all shadow-xs"
             >
               {loading ? <RiLoader2Fill className="animate-spin" /> : "Update Product"}
             </button>

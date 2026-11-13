@@ -188,18 +188,18 @@ function Cart() {
                     <input
                       type="text"
                       placeholder="Enter Promo Code"
-                      className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 shadow-sm"
+                      className="flex-1 border border-slate-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-xs"
                     />
-                    <button className="px-4 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    <button className="px-4 bg-white text-slate-700 font-medium border border-slate-300 rounded-lg hover:bg-slate-50 transition text-sm">
                       Apply
                     </button>
                   </div>
 
                   <button 
-                    className="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl font-bold uppercase transition" 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-bold uppercase tracking-wider transition-all shadow-sm hover:shadow-md active:scale-[0.98]" 
                     onClick={() => navigate("/address")}
                   >
-                    Place Order
+                    Proceed to Checkout
                   </button>
 
                   <button

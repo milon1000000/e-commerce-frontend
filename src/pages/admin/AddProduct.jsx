@@ -200,7 +200,7 @@ function AddProduct() {
             <button
               type="submit"
               disabled={loading}
-              className="bg-pink-600 text-white px-4 py-2 rounded w-full flex items-center justify-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-xl w-full flex items-center justify-center shadow-sm hover:shadow transition"
             >
               {loading ? (
                 <RiLoader2Fill className="animate-spin" />

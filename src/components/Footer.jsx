@@ -15,12 +15,12 @@ function Footer() {
         {/* Column 1 */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <div className="text-pink-500 text-2xl">
+            <div className="text-blue-500 text-2xl">
               <FaShoppingCart />
             </div>
 
             <h2 className="text-3xl font-bold tracking-tighter">
-              <span className="text-pink-500">E</span>KART
+              <span className="text-blue-500">E</span>KART
             </h2>
           </div>
 
@@ -32,7 +32,7 @@ function Footer() {
             <p>123 Electronics St, Style City, NY 10001</p>
             <p>
               Email:
-              <span className="hover:text-pink-500 cursor-pointer ml-1">
+              <span className="hover:text-blue-400 cursor-pointer ml-1">
                 support@Zaptro.com
               </span>
             </p>
@@ -62,10 +62,10 @@ function Footer() {
           <h3 className="text-lg font-semibold mb-6">Follow Us</h3>
 
           <div className="flex gap-5">
-            <FaFacebookF className="cursor-pointer hover:text-pink-500 transition" />
-            <FaInstagram className="cursor-pointer hover:text-pink-500 transition" />
-            <FaTwitter className="cursor-pointer hover:text-pink-500 transition" />
-            <FaPinterestP className="cursor-pointer hover:text-pink-500 transition" />
+            <FaFacebookF className="cursor-pointer hover:text-blue-400 transition" />
+            <FaInstagram className="cursor-pointer hover:text-blue-400 transition" />
+            <FaTwitter className="cursor-pointer hover:text-blue-400 transition" />
+            <FaPinterestP className="cursor-pointer hover:text-blue-400 transition" />
           </div>
         </div>
 
@@ -81,10 +81,10 @@ function Footer() {
             <input
               type="email"
               placeholder="Your email address"
-              className="bg-white text-gray-900 px-4 py-2.5 outline-none w-full text-sm"
+              className="bg-white text-gray-900 px-4 py-2.5 outline-none w-full text-sm rounded-l-lg"
             />
 
-            <button className="bg-pink-600 hover:bg-pink-700 transition px-6 py-2.5 font-semibold text-sm">
+            <button className="bg-blue-600 hover:bg-blue-700 transition px-6 py-2.5 font-semibold text-sm rounded-r-lg">
               Subscribe
             </button>
           </div>
@@ -94,7 +94,7 @@ function Footer() {
       {/* Bottom */}
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-800 text-center">
         <p className="text-gray-500 text-sm">
-          © 2026 <span className="text-pink-500 font-medium">EKart</span>. All
+          © 2026 <span className="text-blue-500 font-medium">EKart</span>. All
           rights reserved
         </p>
       </div>

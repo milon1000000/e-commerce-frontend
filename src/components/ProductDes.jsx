@@ -57,8 +57,8 @@ function ProductDes({ product }) {
         {product.category} | {product.brand}
       </p>
 
-      <h2 className="text-pink-500 font-bold text-xl md:text-2xl">
-        ৳ {product.productPrice}
+      <h2 className="text-blue-600 font-extrabold text-2xl md:text-3xl">
+        ৳ {product.productPrice?.toLocaleString("en-IN")}
       </h2>
 
       <p className="text-gray-700 text-sm md:text-base leading-relaxed">
@@ -72,12 +72,12 @@ function ProductDes({ product }) {
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
-          className="w-16 h-10 text-center border rounded-lg focus:ring-2 focus:ring-pink-400 outline-none"
+          className="w-16 h-10 text-center border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
         />
       </div>
 
       <button
-        className="w-full md:w-fit px-6 h-11 flex items-center justify-center gap-2 bg-pink-500 text-white font-semibold rounded-xl shadow-md hover:bg-pink-600 hover:shadow-lg active:scale-95 transition-all duration-200 disabled:opacity-60"
+        className="w-full md:w-fit px-8 h-12 flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 hover:shadow-lg active:scale-95 transition-all duration-200 disabled:opacity-60"
         onClick={handleAddToCart}
         disabled={loader}
       >

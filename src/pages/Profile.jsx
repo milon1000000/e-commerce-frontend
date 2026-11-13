@@ -84,16 +84,16 @@ function Profile() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-linear-to-b from-pink-50 to-purple-50 flex justify-center items-start pt-28 pb-10 px-4">
-        <div className="w-full max-w-3xl bg-white shadow-xl rounded-xl p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center text-pink-600">
-            Update Profile
+      <div className="min-h-screen bg-slate-50 flex justify-center items-start pt-28 pb-12 px-4">
+        <div className="w-full max-w-3xl bg-white shadow-xl border border-slate-200/80 rounded-2xl p-8">
+          <h2 className="text-2xl font-extrabold mb-6 text-center text-slate-800 tracking-tight">
+            Account Profile
           </h2>
 
           {/* Profile Image */}
-          <div className="relative w-20 h-20 mx-auto mb-6">
+          <div className="relative w-24 h-24 mx-auto mb-6">
             <div
-              className="w-full h-full rounded-full overflow-hidden border-2 border-white shadow cursor-pointer"
+              className="w-full h-full rounded-full overflow-hidden border-2 border-slate-200 shadow-md cursor-pointer ring-2 ring-blue-500/20"
               onClick={() => profileImage.current.click()}
             >
               <img
@@ -111,13 +111,13 @@ function Profile() {
             </div>
 
             <FaPlusCircle
-              className="absolute bottom-0 right-0 w-6 h-6 text-pink-500 bg-white rounded-full p-0.5 shadow-md cursor-pointer"
+              className="absolute bottom-0 right-0 w-6 h-6 text-blue-600 bg-white rounded-full p-0.5 shadow-md cursor-pointer hover:scale-110 transition"
               onClick={() => profileImage.current.click()}
             />
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-5">
+          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
             {[
               "firstName",
               "lastName",
@@ -126,8 +126,8 @@ function Profile() {
               "address",
               "zipCode",
             ].map((field) => (
-              <div key={field}>
-                <label className="font-medium text-gray-700">
+              <div key={field} className="flex flex-col gap-1">
+                <label className="text-xs font-semibold text-slate-700 uppercase tracking-wide">
                   {field.charAt(0).toUpperCase() + field.slice(1)}
                 </label>
                 <input
@@ -135,31 +135,35 @@ function Profile() {
                   name={field}
                   value={formData[field]}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                  className="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
               </div>
             ))}
 
-            <div className="md:col-span-2 text-center mt-4">
+            <div className="md:col-span-2 text-center mt-3">
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-3 rounded-lg font-medium text-white ${
+                className={`w-full py-3 rounded-xl font-semibold text-white shadow-sm hover:shadow transition-all ${
                   loading
-                    ? "bg-pink-400 cursor-not-allowed"
-                    : "bg-pink-600 hover:bg-pink-700"
+                    ? "bg-blue-400 cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-700 active:scale-[0.99]"
                 } flex justify-center items-center gap-2`}
               >
                 {loading && <RiLoader2Fill className="animate-spin" />}
-                {loading ? "Updating..." : "Update Profile"}
+                {loading ? "Updating..." : "Save Profile Changes"}
               </button>
             </div>
           </form>
-           <div className="md:col-span-2 text-center mt-4">
-              <button className="w-full py-3 rounded-xl font-semibold text-white bg-linear-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-md hover:shadow-lg flex justify-center items-center gap-2" onClick={()=>navigate("/order")}>
-                This is my order
-              </button>
-            </div>
+
+          <div className="md:col-span-2 text-center mt-3">
+            <button
+              className="w-full py-3 rounded-xl font-bold text-blue-600 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 transition-all duration-200 shadow-xs flex justify-center items-center gap-2"
+              onClick={() => navigate("/order")}
+            >
+              View Order History
+            </button>
+          </div>
         </div>
       </div>
     </>

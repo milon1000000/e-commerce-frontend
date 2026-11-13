@@ -29,25 +29,25 @@ function Navbar() {
   };
 
   return (
-    <header className="bg-pink-50 fixed top-0 w-full z-50 border-b border-pink-200 shadow-sm">
-      <div className="max-w-7xl mx-auto flex justify-between items-center py-3 px-4 md:px-6">
-        <Link to="/">
-          <img src="/Ekart.png" alt="logo" className="w-20 md:w-20" />
+    <header className="bg-white/95 backdrop-blur-md fixed top-0 w-full z-50 border-b border-slate-200 shadow-xs">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-3.5 px-4 md:px-6">
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/Ekart.png" alt="logo" className="w-20 md:w-22 object-contain" />
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="font-semibold hover:text-pink-600">
+        <nav className="hidden md:flex items-center gap-7">
+          <Link to="/" className="font-semibold text-slate-700 hover:text-blue-600 transition-colors">
             Home
           </Link>
-          <Link to="/products" className="font-semibold hover:text-pink-600">
+          <Link to="/products" className="font-semibold text-slate-700 hover:text-blue-600 transition-colors">
             Products
           </Link>
 
           {userData?.role === "admin" && (
             <Link
               to="/dashboard"
-              className="font-semibold hover:text-pink-600"
+              className="font-semibold text-slate-700 hover:text-blue-600 transition-colors"
             >
               Dashboard
             </Link>
@@ -55,7 +55,7 @@ function Navbar() {
 
           {userData && (
             <div
-              className="w-10 h-10 rounded-full overflow-hidden cursor-pointer"
+              className="w-9 h-9 rounded-full overflow-hidden cursor-pointer ring-2 ring-blue-500/30 hover:ring-blue-600 transition-all"
               onClick={() => navigate("/profile")}
             >
               <img
@@ -66,23 +66,23 @@ function Navbar() {
             </div>
           )}
 
-          <Link to="/cart" className="relative text-pink-600">
+          <Link to="/cart" className="relative text-slate-700 hover:text-blue-600 transition-colors p-1">
             <FaCartPlus className="text-2xl" />
-            <span className="absolute -top-3 -right-4 bg-pink-500 text-white text-xs rounded-full px-2">
+            <span className="absolute -top-1 -right-2 bg-blue-600 text-white text-[11px] font-bold rounded-full px-1.5 py-0.2 shadow-sm min-w-5 text-center">
               {addToCartData?.items?.length || 0}
             </span>
           </Link>
 
           {userData ? (
             <button
-              className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md font-medium"
+              className="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 px-4 py-2 rounded-lg font-semibold transition-colors"
               onClick={handleLogout}
             >
               Logout
             </button>
           ) : (
             <button
-              className="bg-linear-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-md font-medium"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold shadow-sm hover:shadow transition-all"
               onClick={() => navigate("/login")}
             >
               Login
@@ -133,25 +133,25 @@ function Navbar() {
 
           <Link
             to="/cart"
-            className="flex items-center gap-2 text-lg font-medium"
+            className="flex items-center gap-2 text-lg font-semibold text-slate-700 hover:text-blue-600"
             onClick={() => setMenuOpen(false)}
           >
-            <FaCartPlus /> Cart
-            <span className="bg-pink-500 text-white text-xs rounded-full px-2">
+            <FaCartPlus className="text-xl text-blue-600" /> Cart
+            <span className="bg-blue-600 text-white text-xs font-bold rounded-full px-2 py-0.5 shadow-sm">
               {addToCartData?.items?.length || 0}
             </span>
           </Link>
 
           {userData ? (
             <button
-              className="bg-pink-600 text-white px-4 py-2 rounded-md font-medium"
+              className="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 px-6 py-2.5 rounded-lg font-semibold mt-2 transition-colors"
               onClick={handleLogout}
             >
               Logout
             </button>
           ) : (
             <button
-              className="bg-linear-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-md font-medium"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2.5 rounded-lg font-semibold shadow-md mt-2 transition-all"
               onClick={() => {
                 navigate("/login");
                 setMenuOpen(false);

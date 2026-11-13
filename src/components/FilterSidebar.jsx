@@ -21,29 +21,30 @@ function FilterSidebar({
     setSearchProduct(e.target.value);
   };
   return (
-    <div className="bg-gray-100 p-4 rounded-md h-max hidden md:block w-64">
+    <div className="bg-white border border-slate-200/80 shadow-xs p-5 rounded-2xl h-max hidden md:block w-72">
 
-      <div className="flex justify-end max-w-360 mx-auto px-4 mt-4">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="border border-black rounded-lg px-4 py-2 w-full sm:w-64 md:w-80"
-                value={searchProduct}
-                onChange={handleChange}
-              />
-            </div>
-      <h1 className="mt-5 font-semibold text-xl">Category</h1>
+      <div className="w-full mb-2">
+        <input
+          type="text"
+          placeholder="Search products..."
+          className="border border-slate-300 rounded-xl px-4 py-2.5 w-full text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          value={searchProduct}
+          onChange={handleChange}
+        />
+      </div>
+      <h1 className="mt-5 font-bold text-lg text-slate-800">Category</h1>
 
       <div className="flex flex-col gap-2 mt-3">
         {UniqueCategory.map((item, index) => (
-          <div key={index} className="flex items-center gap-2">
+          <div key={index} className="flex items-center gap-2.5 text-sm text-slate-700 hover:text-blue-600 cursor-pointer">
             <input
               type="radio"
               name="category"
+              className="accent-blue-600 w-4 h-4 cursor-pointer"
               checked={selectedCategory === item}
               onChange={() => setSelectedCategory(item)}
             />
-            <label>{item}</label>
+            <label className="cursor-pointer">{item}</label>
           </div>
         ))}
       </div>
@@ -127,7 +128,7 @@ function FilterSidebar({
           setSelectedBrand("All");
           setPriceRange([0, 999999]);
         }}
-        className="bg-pink-500 w-full p-2 rounded-lg hover:bg-pink-600 duration-500 mt-4"
+        className="bg-blue-600 w-full p-2.5 rounded-xl hover:bg-blue-700 text-white font-semibold shadow-sm transition duration-200 mt-5"
       >
         Reset Filters
       </button>

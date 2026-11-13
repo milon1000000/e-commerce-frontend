@@ -3,6 +3,7 @@ import Navbar from "../components/ui/Navbar";
 import { userDataContext } from "../context/userContext";
 import ProductCard from "../components/ProductCard";
 import FilterSidebar from "../components/FilterSidebar";
+import Pagination from "../components/ui/Pagination";
 import axios from "axios";
 import { authDataContext } from "../context/authContext";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -19,7 +20,20 @@ function Product() {
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [priceRange, setPriceRange] = useState([0, 999999]);
 
- 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, selectedBrand, priceRange, searchProduct]);
+
+  useEffect(() => {
+    if (productData) {
+      setAllProducts(productData);
+    }
+  }, [productData]);
 
   useEffect(() => {
     if (!searchProduct) {
@@ -67,13 +81,17 @@ function Product() {
     return categoryMatch && brandMatch && priceMatch;
   });
 
- 
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
-    <div className="pt-20 pb-10 bg-white min-h-screen">
-      <Navbar/>
+    <div className="pt-20 pb-12 bg-slate-50/50 min-h-screen flex flex-col">
+      <Navbar />
 
-      <div className="max-w-360 mx-auto flex flex-col lg:flex-row gap-4 px-4 mt-6">
+      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-6 px-4 mt-6 flex-1">
         <FilterSidebar
           allProducts={allProducts}
           priceRange={priceRange}
@@ -86,21 +104,41 @@ function Product() {
           setSearchProduct={setSearchProduct}
         />
 
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col">
           {loading ? (
-            <p className="flex justify-center mt-10">
-              <AiOutlineLoading3Quarters className="animate-spin text-2xl" />
-            </p>
+            <div className="flex justify-center items-center py-20 flex-1">
+              <AiOutlineLoading3Quarters className="animate-spin text-3xl text-blue-600" />
+            </div>
           ) : filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <div key={product._id} className="flex justify-center">
-                  <ProductCard product={product} />
-                </div>
-              ))}
+            <div className="flex flex-col flex-1 justify-between">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {paginatedProducts.map((product) => (
+                  <div key={product._id} className="flex justify-center">
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              <div className="mt-8 border-t border-slate-200/80 pt-4">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalItems={filteredProducts.length}
+                  itemsPerPage={itemsPerPage}
+                  itemName="products"
+                  onPageChange={(page) => {
+                    setCurrentPage(page);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                />
+              </div>
             </div>
           ) : (
-            <p className="text-center text-gray-500 mt-10">No products found</p>
+            <div className="bg-white rounded-2xl border border-slate-200/80 p-12 text-center text-slate-500 shadow-xs flex-1 flex flex-col items-center justify-center">
+              <p className="text-lg font-medium text-slate-700">No products found</p>
+              <p className="text-sm text-slate-400 mt-1">Try adjusting your filters or search keyword</p>
+            </div>
           )}
         </div>
       </div>
