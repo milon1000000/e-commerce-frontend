@@ -38,7 +38,11 @@ function Login() {
         setAllUsers(result.data.users);
         getAllUsers();
  
-        setTimeout(() => navigate("/"), 500);
+        if (result.data.user?.role === "admin") {
+          setTimeout(() => navigate("/dashboard"), 500);
+        } else {
+          setTimeout(() => navigate("/"), 500);
+        }
       }
     } catch (error) {
       console.error("Login error:", error);

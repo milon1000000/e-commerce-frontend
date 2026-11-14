@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -9,7 +9,6 @@ import Forgot from "./pages/Forgot";
 import ForgotOtp from "./pages/ForgotOtp";
 import ChangePassword from "./pages/ChangePassword";
 import Profile from "./pages/Profile";
-import { userDataContext } from "./context/userContext";
 import Product from "./pages/Product.jsx";
 import Cart from "./pages/Cart.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -22,105 +21,197 @@ import AdminUsers from "./pages/admin/AdminUsers.jsx";
 import UserInfo from "./pages/admin/UserInfo.jsx";
 import SingleProduct from "./pages/SingleProduct.jsx";
 import AdminUpdateProduct from "./pages/AdminUpdateProduct.jsx";
-// import AdminUpdateProduct from "./pages/admin/adminUpdateProduct.jsx";
 import AdminSingleUser from "./pages/admin/AdminSingleUser.jsx";
 import Address from "./pages/Address.jsx";
 import PaymentSuccessul from "./pages/PaymentSuccessul.jsx";
 import PaymentFaild from "./pages/PaymentFaild.jsx";
 import MyOrder from "./pages/MyOrder.jsx";
 
-function App() {
-  const { userData } = useContext(userDataContext);
-  const admin = userData?.role;
-  console.log(admin);
+// Route Guards
+import AdminRoute from "./components/routes/AdminRoute";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+import GuestRoute from "./components/routes/GuestRoute";
 
+function App() {
   return (
     <div>
       <Routes>
+        {/* ================= PUBLIC ROUTES ================= */}
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/verify" element={<Verify />} />
-        <Route path="/verify/:token" element={<VerifyEmail />} />
-        <Route path="/forgot" element={<Forgot />} />
-        <Route path="/forgot-otp/:email" element={<ForgotOtp />} />
-        <Route path="/change-password/:email" element={<ChangePassword />} />
         <Route path="/products" element={<Product />} />
         <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/success" element={<PaymentSuccessul />} />
+        <Route path="/fail" element={<PaymentFaild />} />
 
+        {/* ================= GUEST ROUTES (Only accessible when logged out) ================= */}
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <Login />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <GuestRoute>
+              <Signup />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/verify"
+          element={
+            <GuestRoute>
+              <Verify />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/verify/:token"
+          element={
+            <GuestRoute>
+              <VerifyEmail />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/forgot"
+          element={
+            <GuestRoute>
+              <Forgot />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/forgot-otp/:email"
+          element={
+            <GuestRoute>
+              <ForgotOtp />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/change-password/:email"
+          element={
+            <GuestRoute>
+              <ChangePassword />
+            </GuestRoute>
+          }
+        />
+
+        {/* ================= PROTECTED USER ROUTES (Must be logged in) ================= */}
         <Route
           path="/profile"
-          element={<Profile />}
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/order"
-          element={userData ? <MyOrder /> : <Navigate to="/" />}
-        />
-
-        <Route
-          path="/cart"
-          element={ <Cart/>}
+          element={
+            <ProtectedRoute>
+              <MyOrder />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/address"
-          element={userData ? <Address /> : <Navigate to="/" />}
+          element={
+            <ProtectedRoute>
+              <Address />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/success" element={<PaymentSuccessul />} />
-        <Route path="/fail" element={<PaymentFaild />} />
+
+        {/* ================= ADMIN PROTECTED ROUTES (Admin only) ================= */}
         <Route
           path="/dashboard"
-          element={<Dashboard/>}
-        ></Route>
+          element={
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
+          }
+        />
         <Route
           path="/dashboard/sales"
-          element={<AdminSales/>}
+          element={
+            <AdminRoute>
+              <AdminSales />
+            </AdminRoute>
+          }
         />
         <Route
           path="/dashboard/add-product"
           element={
-             <AddProduct/>
+            <AdminRoute>
+              <AddProduct />
+            </AdminRoute>
           }
         />
         <Route
           path="/dashboard/products"
-          element={<AdminProduct />}
+          element={
+            <AdminRoute>
+              <AdminProduct />
+            </AdminRoute>
+          }
         />
         <Route
           path="/dashboard/orders"
           element={
-            <AdminOrders />
+            <AdminRoute>
+              <AdminOrders />
+            </AdminRoute>
           }
         />
         <Route
           path="/dashboard/user/orders/:id"
-          element={<ShowUserOrders /> }
+          element={
+            <AdminRoute>
+              <ShowUserOrders />
+            </AdminRoute>
+          }
         />
         <Route
           path="/dashboard/users"
           element={
-             <AdminUsers /> 
+            <AdminRoute>
+              <AdminUsers />
+            </AdminRoute>
           }
         />
         <Route
           path="/dashboard/single-user/:id"
           element={
+            <AdminRoute>
               <AdminSingleUser />
-            
+            </AdminRoute>
           }
         />
         <Route
           path="/dashboard/users/:id"
-          element={<UserInfo /> }
+          element={
+            <AdminRoute>
+              <UserInfo />
+            </AdminRoute>
+          }
         />
-
         <Route
           path="/dashboard/update-product/:id"
           element={
-             <AdminUpdateProduct />
+            <AdminRoute>
+              <AdminUpdateProduct />
+            </AdminRoute>
           }
         />
 
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* Catch-all fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
