@@ -3,13 +3,14 @@ import React, { createContext } from "react";
 export const authDataContext = createContext();
 
 function AuthContext({ children }) {
-  const serverUrl =
-    import.meta.env.VITE_SERVER_URL ||
-    (typeof window !== "undefined" &&
+  const isLocal =
+    typeof window !== "undefined" &&
     (window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1")
-      ? "http://localhost:5000"
-      : "https://e-commerce-backend-mern.vercel.app");
+      window.location.hostname === "127.0.0.1");
+
+  const serverUrl = isLocal
+    ? "http://localhost:5000"
+    : "https://e-commerce-backend-mern.vercel.app";
 
   const value = {
     serverUrl,
