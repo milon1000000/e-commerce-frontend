@@ -33,6 +33,9 @@ function Login() {
       );
 
       if (result.data.success) {
+        if (result.data.token) {
+          localStorage.setItem("token", result.data.token);
+        }
         toast.success(result.data.message || "Login Successful");
         setUserData(result.data.user);
         setAllUsers(result.data.users);

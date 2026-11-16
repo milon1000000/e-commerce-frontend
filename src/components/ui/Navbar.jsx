@@ -15,6 +15,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
+      localStorage.removeItem("token");
       const res = await axios.delete(`${serverUrl}/api/v1/user/logout`, {
         withCredentials: true,
       });
@@ -24,6 +25,8 @@ function Navbar() {
         setUserData(null);
       }
     } catch (err) {
+      localStorage.removeItem("token");
+      setUserData(null);
       toast.error(err.response?.data?.message || "Something went wrong!");
     }
   };

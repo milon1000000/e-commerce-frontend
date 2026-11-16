@@ -2,6 +2,21 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { authDataContext } from "./authContext";
 import axios from "axios";
 
+// Attach token from localStorage to all outgoing axios requests automatically
+axios.interceptors.request.use((config) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.token = token;
+    }
+  } catch (e) {
+    // ignore
+  }
+  return config;
+});
+
 export const userDataContext = createContext();
 
 function UserContext({ children }) {
@@ -17,9 +32,11 @@ function UserContext({ children }) {
   const getCurrentUser = async () => {
     try {
       setAuthLoading(true);
+      const token = localStorage.getItem("token");
+      const headers = token ? { Authorization: `Bearer ${token}`, token } : {};
       const result = await axios.get(
         `${serverUrl}/api/v1/user/get-current`,
-        { withCredentials: true }
+        { withCredentials: true, headers }
       );
       setUserData(result.data.user || null);
     } catch (error) {
